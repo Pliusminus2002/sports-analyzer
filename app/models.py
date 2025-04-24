@@ -29,3 +29,13 @@ class Team:
                     player.rebounds_avg * 0.2
                 )
         return total_strength
+
+class PlayerFactory:
+    @staticmethod
+    def create_player(sport, name, points, assists, rebounds, injury_status=False):
+        if sport == "basketball":
+            return Player(name, points, assists, rebounds, injury_status)
+        elif sport == "football":
+            return Player(name, points, assists, rebounds, injury_status)
+        else:
+            raise ValueError("Unsupported sport type")
