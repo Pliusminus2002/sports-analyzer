@@ -22,6 +22,12 @@ def football():
         data = json.load(f)
     football_teams = [team for team in data["teams"] if team["sport"] == "football"]
     return render_template("football.html", teams=football_teams)
+@main.route("/volleyball")
+def volleyball():
+    with open("app/data.json", encoding="utf-8") as f:
+        data = json.load(f)
+    volleyball_teams = [team for team in data["teams"] if team["sport"] == "volleyball"]
+    return render_template("volleyball.html", teams=volleyball_teams)
 @main.route("/analyze", methods=["GET", "POST"])
 def analyze():
     import json
