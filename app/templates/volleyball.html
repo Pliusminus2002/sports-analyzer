@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinklinio komandos</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #fceabb, #f8b500);
+            font-family: sans-serif;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .team {
+            background-color: white;
+            padding: 20px;
+            margin: 15px auto;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 600px;
+        }
+        .team h2 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lietuvos tinklinio komandos</h1>
+    {% for team in teams %}
+        <div class="team">
+            <h2>{{ team.name }}</h2>
+            <table>
+                <tr>
+                    <th>Vardas</th>
+                    <th>Smūgiai</th>
+                    <th>Blokai</th>
+                    <th>Padavimai</th>
+                </tr>
+                {% for player in team.players %}
+                <tr>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.spikes }}</td>
+                    <td>{{ player.blocks }}</td>
+                    <td>{{ player.aces }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endfor %}
+</body>
+</html>
