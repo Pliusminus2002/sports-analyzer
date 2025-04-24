@@ -37,41 +37,4 @@
       "sport": "football",
       "players": [
         {"name": "K. Laukžemis", "goals": 7, "assists": 2, "yellow_cards": 3},
-        {"name": "M. Stankevičius", "goals": 2, "assists": 5, "yellow_cards": 0}
-      ]
-    },
-    {
-      "name": "Sūduva",
-      "sport": "football",
-      "players": [
-        {"name": "A. Kizeys", "goals": 5, "assists": 3, "yellow_cards": 2},
-        {"name": "D. Šimkus", "goals": 1, "assists": 4, "yellow_cards": 4}
-        {
-  "name": "Vilniaus Flamingo Volley",
-  "sport": "volleyball",
-  "players": [
-    {"name": "M. Petrauskas", "spikes": 34, "blocks": 12, "aces": 4},
-    {"name": "T. Šimkus", "spikes": 28, "blocks": 14, "aces": 3}
-  ]
-},
-{
-  "name": "Kauno Tauras",
-  "sport": "volleyball",
-  "players": [
-    {"name": "J. Lukošius", "spikes": 31, "blocks": 15, "aces": 2},
-    {"name": "E. Norvaiša", "spikes": 27, "blocks": 10, "aces": 5}
-  ]
-},
-{
-  "name": "Klaipėdos Amber Volley",
-  "sport": "volleyball",
-  "players": [
-    {"name": "G. Vaitkus", "spikes": 36, "blocks": 13, "aces": 4},
-    {"name": "S. Džiaugys", "spikes": 25, "blocks": 11, "aces": 6}
-  ]
-}
-
-      ]
-    }
-  ]
-}
+        {"name": "M. Stankevičius", "goals
