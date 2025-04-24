@@ -23,6 +23,30 @@
         {"name": "B. Wiggins", "points_avg": 15.6, "assists_avg": 1.9, "rebounds_avg": 4.0},
         {"name": "D. Gailius", "points_avg": 13.3, "assists_avg": 3.4, "rebounds_avg": 3.8}
       ]
+    },
+    {
+      "name": "Žalgiris Vilnius",
+      "sport": "football",
+      "players": [
+        {"name": "K. Uzėla", "goals": 6, "assists": 4, "yellow_cards": 2},
+        {"name": "O. Verbickas", "goals": 3, "assists": 6, "yellow_cards": 1}
+      ]
+    },
+    {
+      "name": "Hegelmann",
+      "sport": "football",
+      "players": [
+        {"name": "K. Laukžemis", "goals": 7, "assists": 2, "yellow_cards": 3},
+        {"name": "M. Stankevičius", "goals": 2, "assists": 5, "yellow_cards": 0}
+      ]
+    },
+    {
+      "name": "Sūduva",
+      "sport": "football",
+      "players": [
+        {"name": "A. Kizeys", "goals": 5, "assists": 3, "yellow_cards": 2},
+        {"name": "D. Šimkus", "goals": 1, "assists": 4, "yellow_cards": 4}
+      ]
     }
   ]
 }
