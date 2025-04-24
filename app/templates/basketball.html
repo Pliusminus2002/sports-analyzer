@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Krepšinio komandos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .team {
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Krepšinio komandos</h1>
+
+    {% for team in teams %}
+        <div class="team">
+            <h2>{{ team.name }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Žaidėjas</th>
+                        <th>Taškai (vid.)</th>
+                        <th>Perdavimai (vid.)</th>
+                        <th>Kamuoliai (vid.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in team.players %}
+                        <tr>
+                            <td>{{ player.name }}</td>
+                            <td>{{ player.points_avg }}</td>
+                            <td>{{ player.assists_avg }}</td>
+                            <td>{{ player.rebounds_avg }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+</body>
+</html>
