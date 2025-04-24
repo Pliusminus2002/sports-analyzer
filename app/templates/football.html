@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Futbolo komandos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #111;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .team {
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #ffffff;
+        }
+        th, td {
+            border: 1px solid #111;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #dcdcdc;
+        }
+        tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Futbolo komandos</h1>
+
+    {% for team in teams %}
+        <div class="team">
+            <h2>{{ team.name }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Žaidėjas</th>
+                        <th>Įvarčiai</th>
+                        <th>Rezultatyvūs perdavimai</th>
+                        <th>Geltonos kortelės</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in team.players %}
+                        <tr>
+                            <td>{{ player.name }}</td>
+                            <td>{{ player.goals }}</td>
+                            <td>{{ player.assists }}</td>
+                            <td>{{ player.yellow_cards }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+</body>
+</html>
