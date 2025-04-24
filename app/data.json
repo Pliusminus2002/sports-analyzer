@@ -1,3 +1,28 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "name": "Žalgiris",
+      "sport": "basketball",
+      "players": [
+        {"name": "E. Ulanovas", "points_avg": 12.4, "assists_avg": 2.1, "rebounds_avg": 4.3},
+        {"name": "K. Hayes", "points_avg": 10.1, "assists_avg": 3.7, "rebounds_avg": 3.2}
+      ]
+    },
+    {
+      "name": "Rytas",
+      "sport": "basketball",
+      "players": [
+        {"name": "M. Normantas", "points_avg": 14.0, "assists_avg": 4.0, "rebounds_avg": 2.5},
+        {"name": "G. Radzevičius", "points_avg": 11.2, "assists_avg": 2.2, "rebounds_avg": 5.1}
+      ]
+    },
+    {
+      "name": "Neptūnas",
+      "sport": "basketball",
+      "players": [
+        {"name": "B. Wiggins", "points_avg": 15.6, "assists_avg": 1.9, "rebounds_avg": 4.0},
+        {"name": "D. Gailius", "points_avg": 13.3, "assists_avg": 3.4, "rebounds_avg": 3.8}
+      ]
+    }
+  ]
 }
