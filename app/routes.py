@@ -2,35 +2,58 @@ from flask import Blueprint, render_template
 import json
 import flask
 
-
 main = Blueprint("main", __name__)
 
 @main.route("/")
 def index():
     return render_template("index.html")
 
-@main.route("/basketball")
+@main.route("/basketball", methods=["GET", "POST"])
 def basketball():
     with open("app/data.json", encoding="utf-8") as f:
         data = json.load(f)
     basketball_teams = [team for team in data["teams"] if team["sport"] == "basketball"]
-    return render_template("basketball.html", teams=basketball_teams)
+
+    result = None
+    if flask.request.method == "POST":
+        team1_name = flask.request.form["team1"]
+        team2_name = flask.request.form["team2"]
+
+        def get_strength(team):
+            return sum(
+                p.get("points_avg", 0) + p.get("assists_avg", 0) + p.get("rebounds_avg", 0)
+                for p in team["players"]
+            )
+
+        team1 = next(t for t in basketball_teams if t["name"] == team1_name)
+        team2 = next(t for t in basketball_teams if t["name"] == team2_name)
+        s1 = get_strength(team1)
+        s2 = get_strength(team2)
+
+        if s1 + s2 > 0:
+            percent = int((s1 / (s1 + s2)) * 100)
+            result = f"{team1_name} yra {percent}% stipresnė už {team2_name}"
+        else:
+            result = "Abi komandos neturi pakankamai duomenų palyginimui."
+
+    return render_template("basketball.html", teams=basketball_teams, result=result)
+
 @main.route("/football")
 def football():
-    import json
     with open("app/data.json", encoding="utf-8") as f:
         data = json.load(f)
     football_teams = [team for team in data["teams"] if team["sport"] == "football"]
     return render_template("football.html", teams=football_teams)
+
 @main.route("/volleyball")
 def volleyball():
     with open("app/data.json", encoding="utf-8") as f:
         data = json.load(f)
     volleyball_teams = [team for team in data["teams"] if team["sport"] == "volleyball"]
     return render_template("volleyball.html", teams=volleyball_teams)
+
 @main.route("/analyze", methods=["GET", "POST"])
 def analyze():
-    import json
     result = None
     with open("app/data.json", encoding="utf-8") as f:
         data = json.load(f)
