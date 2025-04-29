@@ -6,13 +6,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            margin: 30px;
+            background: linear-gradient(to bottom, #ffffff, #c0c0c0);
             color: #111;
-            padding: 30px;
         }
         h1 {
+            color: #222;
             text-align: center;
-            color: #2c3e50;
         }
         .team {
             margin-bottom: 40px;
@@ -21,18 +21,29 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            background-color: #ffffff;
+            background-color: #fff;
         }
         th, td {
-            border: 1px solid #111;
+            border: 2px solid #444;
             padding: 10px;
             text-align: center;
         }
         th {
-            background-color: #dcdcdc;
+            background-color: #d9d9d9;
+            color: #000;
         }
         tr:nth-child(even) {
-            background-color: #f0f0f0;
+            background-color: #f7f7f7;
+        }
+        form {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
         }
     </style>
 </head>
@@ -64,5 +75,25 @@
             </table>
         </div>
     {% endfor %}
+
+    <!-- ANALIZATORIAUS FORMA ČIA -->
+    <form method="POST">
+        <h2>Palyginkite futbolo komandas</h2>
+        <select name="team1">
+            {% for team in teams %}
+                <option value="{{ team.name }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="team2">
+            {% for team in teams %}
+                <option value="{{ team.name }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Analizuoti</button>
+        {% if result %}
+        <p class="result">{{ result }}</p>
+        {% endif %}
+    </form>
+
 </body>
 </html>
