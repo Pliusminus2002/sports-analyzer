@@ -21,43 +21,74 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             width: 600px;
         }
-        .team h2 {
-            color: #444;
-            margin-bottom: 10px;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 10px;
         }
         th, td {
             padding: 8px;
             border-bottom: 1px solid #ccc;
             text-align: center;
         }
+        form {
+            text-align: center;
+            margin-top: 40px;
+        }
+        select, button {
+            padding: 8px;
+            margin: 5px;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #222;
+        }
     </style>
 </head>
 <body>
     <h1>Lietuvos tinklinio komandos</h1>
+
     {% for team in teams %}
-        <div class="team">
-            <h2>{{ team.name }}</h2>
-            <table>
-                <tr>
-                    <th>Vardas</th>
-                    <th>Smūgiai</th>
-                    <th>Blokai</th>
-                    <th>Padavimai</th>
-                </tr>
-                {% for player in team.players %}
-                <tr>
-                    <td>{{ player.name }}</td>
-                    <td>{{ player.spikes }}</td>
-                    <td>{{ player.blocks }}</td>
-                    <td>{{ player.aces }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+    <div class="team">
+        <h2>{{ team.name }}</h2>
+        <table>
+            <tr>
+                <th>Vardas</th>
+                <th>Smūgiai</th>
+                <th>Blokai</th>
+                <th>Padavimai</th>
+            </tr>
+            {% for player in team.players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.spikes }}</td>
+                <td>{{ player.blocks }}</td>
+                <td>{{ player.aces }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     {% endfor %}
+
+    <form method="POST">
+        <h2>Palyginkite tinklinio komandas</h2>
+        <select name="team1">
+            {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="team2">
+            {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Analizuoti</button>
+
+        {% if result %}
+        <p class="result">{{ result }}</p>
+        {% endif %}
+    </form>
 </body>
 </html>
