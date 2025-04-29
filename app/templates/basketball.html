@@ -35,6 +35,16 @@
         tr:nth-child(even) {
             background-color: #fef4e8;
         }
+        form {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -65,5 +75,25 @@
             </table>
         </div>
     {% endfor %}
+
+    <!-- ANALIZATORIAUS FORMA ČIA -->
+    <form method="POST">
+        <h2>Palyginkite krepšinio komandas</h2>
+        <select name="team1">
+            {% for team in teams %}
+                <option value="{{ team.name }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="team2">
+            {% for team in teams %}
+                <option value="{{ team.name }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Analizuoti</button>
+        {% if result %}
+        <p class="result">{{ result }}</p>
+        {% endif %}
+    </form>
+
 </body>
 </html>
