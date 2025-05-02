@@ -1,92 +1,68 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #ffe082, #ffb74d);
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #ffe082, #ffca28);
   overflow-x: hidden;
   position: relative;
+  height: 100vh;
 }
 
 header {
   text-align: center;
   padding-top: 60px;
-  color: #222;
+}
+
+h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #212121;
+}
+
+p {
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 10px;
 }
 
 .links {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  margin-top: 40px;
+  gap: 60px;
+  margin-top: 60px;
+  z-index: 2;
+  position: relative;
 }
 
-.links img {
+.links a img {
   width: 100px;
   height: 100px;
-  transition: transform 0.3s;
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
-.links img:hover {
-  transform: scale(1.1);
+.links a img:hover {
+  transform: scale(1.1) rotate(10deg);
 }
 
-.falling-balls-container img {
+/* Kamuoliukų kritimo animacija */
+.falling-ball {
   position: absolute;
   width: 40px;
   height: 40px;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 50%;
+  z-index: 1;
+  animation: fall linear;
+  opacity: 0.9;
 }
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #ffdd73, #ffb347);
-    overflow: hidden;
-}
-header {
-    text-align: center;
-    padding: 80px 20px 40px;
-}
-header h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #222;
-}
-header p {
-    font-size: 1.2rem;
-    color: #333;
-}
-.links {
-    text-align: center;
-    margin-top: 50px;
-}
-.links a img {
-    width: 100px;
-    height: 100px;
-    margin: 0 30px;
-    transition: transform 0.3s ease;
-}
-.links a:hover img {
-    transform: scale(1.15);
-}
-.ball {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-    animation: fall linear forwards;
-}
+
 @keyframes fall {
-    0% {
-        transform: translateY(-100px) translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) translateX(300px);
-        opacity: 0.3;
-    }
+  0% {
+    transform: translateY(-100px) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(300px);
+    opacity: 0.3;
+  }
 }
