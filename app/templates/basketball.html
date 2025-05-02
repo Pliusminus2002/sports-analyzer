@@ -1,136 +1,100 @@
+<!-- Template failas: app/templates/basketball.html -->
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-    <meta charset="UTF-8">
-    <title>Krepšinio komandos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 30px;
-            background-color: #f87c2f;
-            color: #111;
-        }
-        nav {
-            background-color: #111;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline-block;
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s, transform 0.3s;
-        }
-        nav ul li a:hover {
-            color: #ffb347;
-            transform: scale(1.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        .team {
-            margin-bottom: 40px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            background-color: #fff;
-        }
-        th, td {
-            border: 2px solid #222;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #ffb347;
-            color: #000;
-        }
-        tr:nth-child(even) {
-            background-color: #fef4e8;
-        }
-        form {
-            margin-top: 50px;
-            text-align: center;
-        }
-        select, button {
-            padding: 8px;
-            margin: 5px;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: green;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Krepšinio komandos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f87c2f;
+      color: #111;
+    }
+    h1 {
+      color: #111;
+      text-align: center;
+    }
+    .team {
+      margin-bottom: 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: #fff;
+    }
+    th, td {
+      border: 2px solid #222;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #ffb347;
+      color: #000;
+    }
+    tr:nth-child(even) {
+      background-color: #fef4e8;
+    }
+    form {
+      margin-top: 50px;
+      text-align: center;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    .result {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
+  <h1>Krepšinio komandos</h1>
 
-<nav>
-    <ul>
-        <li><a href="/">Pradžia</a></li>
-        <li><a href="/basketball">Krepšinis</a></li>
-        <li><a href="/football">Futbolas</a></li>
-        <li><a href="/volleyball">Tinklinis</a></li>
-    </ul>
-</nav>
-
-<h1>Krepšinio komandos</h1>
-
-{% for team in teams %}
+  {% for team in teams %}
     <div class="team">
-        <h2>{{ team.name }}</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Žaidėjas</th>
-                    <th>Taškai (vid.)</th>
-                    <th>Perdavimai (vid.)</th>
-                    <th>Kamuoliai (vid.)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in team.players %}
-                    <tr>
-                        <td>{{ player.name }}</td>
-                        <td>{{ player.points_avg }}</td>
-                        <td>{{ player.assists_avg }}</td>
-                        <td>{{ player.rebounds_avg }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+      <h2>{{ team.name }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Vardas</th>
+            <th>Taškai</th>
+            <th>Perdavimai</th>
+            <th>Atkovoti kamuoliai</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for player in team.players %}
+            <tr>
+              <td>{{ player.name }}</td>
+              <td>{{ player.points_avg }}</td>
+              <td>{{ player.assists_avg }}</td>
+              <td>{{ player.rebounds_avg }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-{% endfor %}
+  {% endfor %}
 
-<form method="POST">
-    <h2>Palyginkite krepšinio komandas</h2>
+  <form method="POST">
+    <h2>Palyginkite dvi komandas</h2>
     <select name="team1">
-        {% for team in teams %}
-            <option value="{{ team.name }}">{{ team.name }}</option>
-        {% endfor %}
+      {% for team in teams %}
+        <option value="{{ team.name }}">{{ team.name }}</option>
+      {% endfor %}
     </select>
     <select name="team2">
-        {% for team in teams %}
-            <option value="{{ team.name }}">{{ team.name }}</option>
-        {% endfor %}
+      {% for team in teams %}
+        <option value="{{ team.name }}">{{ team.name }}</option>
+      {% endfor %}
     </select>
     <button type="submit">Analizuoti</button>
-
-    {% if result %}
-    <p class="result">{{ result }}</p>
-    {% endif %}
-</form>
-
+    {% if result %}<p class="result">{{ result }}</p>{% endif %}
+  </form>
 </body>
 </html>
