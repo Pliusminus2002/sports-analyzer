@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-    <meta charset="UTF-8">
-    <title>Sports Analyzer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <meta charset="UTF-8">
+  <title>Sports Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<header>
+  <div class="falling-balls-container"></div>
+
+  <header>
     <h1>Sveiki atvykę į <span style="color: orangered;">Sports Analyzer!</span></h1>
     <p>Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!</p>
-</header>
+  </header>
 
-<div class="links">
+  <div class="links">
     <a href="/basketball"><img src="{{ url_for('static', filename='img/basketball.png') }}" alt="Krepšinis"></a>
     <a href="/football"><img src="{{ url_for('static', filename='img/football.png') }}" alt="Futbolas"></a>
     <a href="/volleyball"><img src="{{ url_for('static', filename='img/volleyball.png') }}" alt="Tinklinis"></a>
-</div>
+  </div>
 
-<script src="{{ url_for('static', filename='balls.js') }}"></script>
+  <script src="{{ url_for('static', filename='balls.js') }}"></script>
 </body>
 </html>
