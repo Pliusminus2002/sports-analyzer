@@ -14,11 +14,17 @@ function createBall(imageSrc) {
   const ball = document.createElement('img');
   ball.src = imageSrc;
   ball.classList.add('falling-ball');
-  ball.style.left = `${getRandom(0, 100)}vw`;
-  ball.style.width = `${getRandom(20, 40)}px`;
-  ball.style.animationDuration = `${getRandom(3, 6)}s`;
-  ball.style.zIndex = '1';
+  ball.style.left = `${getRandom(0, window.innerWidth - 40)}px`;
+  ball.style.animationDuration = `${getRandom(3, 7)}s`;
+
+  // Ištrinam kamuolį kai baigiasi animacija
+  ball.addEventListener('animationend', () => {
+    ball.remove();
+  });
+
   container.appendChild(ball);
+}
+
 
   setTimeout(() => {
     ball.remove();
