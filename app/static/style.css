@@ -1,68 +1,50 @@
 body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to bottom, #ffe082, #ffb74d);
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-  height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ffdd73, #ffb347);
+    overflow: hidden;
 }
-
-.overlay-text {
-  position: absolute;
-  width: 100%;
-  top: 100px;
-  text-align: center;
-  color: #222;
-  z-index: 10;
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
 }
-
-.overlay-text h1 {
-  font-size: 2.8rem;
-  font-weight: bold;
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #222;
 }
-
-.overlay-text p {
-  font-size: 1.2rem;
-  margin-top: 10px;
+header p {
+    font-size: 1.2rem;
+    color: #333;
 }
-
-.highlight {
-  color: #ff5722;
+.links {
+    text-align: center;
+    margin-top: 50px;
 }
-
-.ball-buttons {
-  position: absolute;
-  bottom: 50px;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
+.links a img {
+    width: 100px;
+    height: 100px;
+    margin: 0 30px;
+    transition: transform 0.3s ease;
 }
-
-.ball-buttons img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin: 0 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.ball-buttons img:hover {
-  transform: scale(1.1);
+.links a:hover img {
+    transform: scale(1.15);
 }
 .ball {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  animation: fall linear forwards;
-  pointer-events: none;
-  z-index: 1;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    animation: fall linear forwards;
 }
-
 @keyframes fall {
-  0% { transform: translateY(-50px); opacity: 0; }
-  100% { transform: translateY(110vh); opacity: 1; }
+    0% {
+        transform: translateY(-100px) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(300px);
+        opacity: 0.3;
+    }
 }
