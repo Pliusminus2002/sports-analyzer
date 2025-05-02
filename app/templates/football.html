@@ -10,8 +10,31 @@
             background: linear-gradient(to bottom, #ffffff, #c0c0c0);
             color: #111;
         }
+        nav {
+            background-color: #111;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffb347;
+            transform: scale(1.1);
+        }
         h1 {
-            color: #222;
             text-align: center;
         }
         .team {
@@ -39,6 +62,10 @@
             margin-top: 50px;
             text-align: center;
         }
+        select, button {
+            padding: 8px;
+            margin: 5px;
+        }
         .result {
             margin-top: 20px;
             font-size: 20px;
@@ -48,52 +75,62 @@
     </style>
 </head>
 <body>
-    <h1>Futbolo komandos</h1>
 
-    {% for team in teams %}
-        <div class="team">
-            <h2>{{ team.name }}</h2>
-            <table>
-                <thead>
+<nav>
+    <ul>
+        <li><a href="/">Pradžia</a></li>
+        <li><a href="/basketball">Krepšinis</a></li>
+        <li><a href="/football">Futbolas</a></li>
+        <li><a href="/volleyball">Tinklinis</a></li>
+    </ul>
+</nav>
+
+<h1>Futbolo komandos</h1>
+
+{% for team in teams %}
+    <div class="team">
+        <h2>{{ team.name }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Žaidėjas</th>
+                    <th>Įvarčiai</th>
+                    <th>Perdavimai</th>
+                    <th>Geltonos kortelės</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in team.players %}
                     <tr>
-                        <th>Žaidėjas</th>
-                        <th>Įvarčiai</th>
-                        <th>Rezultatyvūs perdavimai</th>
-                        <th>Geltonos kortelės</th>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.goals }}</td>
+                        <td>{{ player.assists }}</td>
+                        <td>{{ player.yellow_cards }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for player in team.players %}
-                        <tr>
-                            <td>{{ player.name }}</td>
-                            <td>{{ player.goals }}</td>
-                            <td>{{ player.assists }}</td>
-                            <td>{{ player.yellow_cards }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}
 
-    <!-- ANALIZATORIAUS FORMA ČIA -->
-    <form method="POST">
-        <h2>Palyginkite futbolo komandas</h2>
-        <select name="team1">
-            {% for team in teams %}
-                <option value="{{ team.name }}">{{ team.name }}</option>
-            {% endfor %}
-        </select>
-        <select name="team2">
-            {% for team in teams %}
-                <option value="{{ team.name }}">{{ team.name }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Analizuoti</button>
-        {% if result %}
-        <p class="result">{{ result }}</p>
-        {% endif %}
-    </form>
+<form method="POST">
+    <h2>Palyginkite futbolo komandas</h2>
+    <select name="team1">
+        {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="team2">
+        {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Analizuoti</button>
+
+    {% if result %}
+    <p class="result">{{ result }}</p>
+    {% endif %}
+</form>
 
 </body>
 </html>
