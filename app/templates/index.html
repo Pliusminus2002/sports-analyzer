@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sports Analyzer</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Sports Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <div class="overlay-text">
-    <h1>Sveiki atvykę į <span class="highlight">Sports Analyzer!</span></h1>
+<header>
+    <h1>Sveiki atvykę į <span style="color: orangered;">Sports Analyzer!</span></h1>
     <p>Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!</p>
-  </div>
+</header>
 
-  <div class="ball-buttons">
-    <a href="{{ url_for('main.basketball') }}">
-      <img src="{{ url_for('static', filename='img/krepšinio.png') }}" alt="Krepšinis">
-    </a>
-    <a href="{{ url_for('main.football') }}">
-      <img src="{{ url_for('static', filename='img/futbolo.jpg') }}" alt="Futbolas">
-    </a>
-    <a href="{{ url_for('main.volleyball') }}">
-      <img src="{{ url_for('static', filename='img/Tinklinio.jpg') }}" alt="Tinklinis">
-    </a>
-  </div>
+<div class="links">
+    <a href="/basketball"><img src="{{ url_for('static', filename='img/basketball.png') }}" alt="Krepšinis"></a>
+    <a href="/football"><img src="{{ url_for('static', filename='img/football.png') }}" alt="Futbolas"></a>
+    <a href="/volleyball"><img src="{{ url_for('static', filename='img/volleyball.png') }}" alt="Tinklinis"></a>
+</div>
 
-  <script src="{{ url_for('static', filename='balls.js') }}"></script>
+<script src="{{ url_for('static', filename='balls.js') }}"></script>
 </body>
 </html>
