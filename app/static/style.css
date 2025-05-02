@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #ffe082, #ffb74d);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.overlay-text {
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  text-align: center;
+  color: #222;
+  z-index: 10;
+}
+
+.overlay-text h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.overlay-text p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.highlight {
+  color: #ff5722;
+}
+
+.ball-buttons {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.ball-buttons img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.ball-buttons img:hover {
+  transform: scale(1.1);
+}
+.ball {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: fall linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(110vh); opacity: 1; }
+}
