@@ -1,105 +1,28 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-    <meta charset="UTF-8">
-    <title>Sports Analyzer</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom right, #ffe259, #ffa751);
-            overflow-x: hidden;
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 20px 20px;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #222;
-        }
-
-        p.description {
-            text-align: center;
-            font-size: 1.2em;
-            color: #444;
-        }
-
-        .ball-container {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 60px;
-        }
-
-        .ball-button {
-            width: 140px;
-            height: 140px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .ball-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .flying-ball {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            animation: fly 10s linear infinite;
-        }
-
-        @keyframes fly {
-            0% {
-                top: -80px;
-                left: -100px;
-                transform: rotate(0deg);
-            }
-            100% {
-                top: 100vh;
-                left: 110vw;
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Sports Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>Sveiki atvykę į Sports Analyzer!</header>
-    <p class="description">Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!</p>
+  <div class="overlay-text">
+    <h1>Sveiki atvykę į <span class="highlight">Sports Analyzer!</span></h1>
+    <p>Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!</p>
+  </div>
 
-    <div class="ball-container">
-        <a href="/basketball" class="ball-button" style="background-image: url('/static/img/basketball.png');"></a>
-        <a href="/football" class="ball-button" style="background-image: url('/static/img/football.png');"></a>
-        <a href="/volleyball" class="ball-button" style="background-image: url('/static/img/volleyball.png');"></a>
-    </div>
+  <div class="ball-buttons">
+    <a href="{{ url_for('main.basketball') }}">
+      <img src="{{ url_for('static', filename='img/krepšinio.png') }}" alt="Krepšinis">
+    </a>
+    <a href="{{ url_for('main.football') }}">
+      <img src="{{ url_for('static', filename='img/futbolo.jpg') }}" alt="Futbolas">
+    </a>
+    <a href="{{ url_for('main.volleyball') }}">
+      <img src="{{ url_for('static', filename='img/Tinklinio.jpg') }}" alt="Tinklinis">
+    </a>
+  </div>
 
-    <!-- 100 random flying balls (krepšinis, futbolas, tinklinis) -->
-    <script>
-        const images = [
-            '/static/img/basketball.png',
-            '/static/img/football.png',
-            '/static/img/volleyball.png'
-        ];
-
-        for (let i = 0; i < 100; i++) {
-            const ball = document.createElement('div');
-            ball.className = 'flying-ball';
-            ball.style.top = Math.random() * window.innerHeight + 'px';
-            ball.style.left = Math.random() * window.innerWidth + 'px';
-            ball.style.animationDelay = Math.random() * 5 + 's';
-            ball.style.animationDuration = (8 + Math.random() * 4) + 's';
-            ball.style.backgroundImage = `url(${images[Math.floor(Math.random()*images.length)]})`;
-            document.body.appendChild(ball);
-        }
-    </script>
+  <script src="{{ url_for('static', filename='balls.js') }}"></script>
 </body>
 </html>
