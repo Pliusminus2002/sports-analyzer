@@ -1,25 +1,20 @@
-const container = document.querySelector('.falling-balls-container');
-const ballTypes = ['basketball', 'football', 'volleyball'];
-const totalBalls = 100;
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const ballImages = [
+    "{{ url_for('static', filename='img/basketball.png') }}",
+    "{{ url_for('static', filename='img/football.png') }}",
+    "{{ url_for('static', filename='img/volleyball.png') }}"
+  ];
 
-for (let i = 0; i < totalBalls; i++) {
-  const img = document.createElement('img');
-  const type = ballTypes[Math.floor(Math.random() * ballTypes.length)];
-  img.src = `/static/img/${type}.png`;
-  img.style.left = Math.random() * 100 + 'vw';
-  img.style.top = '-50px';
-  img.style.animation = `fall ${5 + Math.random() * 5}s linear ${Math.random() * 5}s infinite`;
-  container.appendChild(img);
-}
-
-// Animate falling with CSS
-const style = document.createElement('style');
-style.innerHTML = `
-  @keyframes fall {
-    to {
-      transform: translateY(120vh) rotate(360deg);
-      opacity: 0;
-    }
+  for (let i = 0; i < 100; i++) {
+    const img = document.createElement('img');
+    img.src = ballImages[Math.floor(Math.random() * ballImages.length)];
+    img.classList.add('falling-ball');
+    img.style.left = Math.random() * 100 + 'vw';
+    img.style.animationDuration = (2 + Math.random() * 4) + 's';
+    img.style.animationDelay = (Math.random() * 3) + 's';
+    img.style.width = '30px';
+    img.style.position = 'absolute';
+    body.appendChild(img);
   }
-`;
-document.head.appendChild(style);
+});
