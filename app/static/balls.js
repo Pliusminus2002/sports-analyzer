@@ -1,15 +1,19 @@
-// Paimam konteinerį
+// Pasirenkame konteinerį, į kurį dėsim kamuolius
 const container = document.querySelector('.falling-balls-container');
 
-// Jinja sugeneruoja tikrą URL šitam JS faile kaip globalius kintamuosius
-const ballImages = window.ballImages || [];
+// Kelios kamuolių nuotraukos
+const ballImages = [
+  '/static/img/basketball.png',
+  '/static/img/football.png',
+  '/static/img/volleyball.png'
+];
 
-// Random funkcija
+// Atsitiktinis skaičius tarp min ir max
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-// Kamuolio kūrimas
+// Sukuriam vieną kamuolį
 function createBall(imageSrc) {
   const ball = document.createElement('img');
   ball.src = imageSrc;
@@ -17,7 +21,7 @@ function createBall(imageSrc) {
   ball.style.left = `${getRandom(0, window.innerWidth - 40)}px`;
   ball.style.animationDuration = `${getRandom(3, 7)}s`;
 
-  // Ištrinam kamuolį kai baigiasi animacija
+  // Ištrinam kai animacija baigiasi
   ball.addEventListener('animationend', () => {
     ball.remove();
   });
@@ -25,15 +29,9 @@ function createBall(imageSrc) {
   container.appendChild(ball);
 }
 
-
-  setTimeout(() => {
-    ball.remove();
-  }, 7000);
-}
-
-// Sukuriam ~300 kamuolių atsitiktinai
-for (let i = 0; i < 300; i++) {
-  const delay = getRandom(0, 5000);
+// Sukuriam 100 kamuolių
+for (let i = 0; i < 100; i++) {
+  const delay = getRandom(0, 3000); // atsitiktinis vėlavimas iki 3s
   setTimeout(() => {
     const img = ballImages[Math.floor(Math.random() * ballImages.length)];
     createBall(img);
