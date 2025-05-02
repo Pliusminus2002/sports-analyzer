@@ -7,73 +7,111 @@
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #ffeb88, #f8b500);
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to bottom, #fff3e0, #ffe082);
-            overflow-x: hidden;
+            height: 100vh;
+            position: relative;
         }
-        .header {
+
+        h1 {
             text-align: center;
-            padding: 60px 20px 20px;
-            color: #333;
-            font-size: 36px;
-            font-weight: bold;
+            padding-top: 50px;
+            font-size: 48px;
+            color: #222;
+            animation: fadeIn 2s ease-in-out;
         }
-        .description {
+
+        p.description {
             text-align: center;
-            font-size: 18px;
-            margin-bottom: 50px;
-            color: #444;
+            font-size: 20px;
+            margin-top: 10px;
+            animation: fadeIn 3s ease-in-out;
         }
-        .balls-container {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-bottom: 100px;
-        }
+
         .ball-link {
             display: inline-block;
-            transition: transform 0.3s ease;
+            margin: 40px;
+            text-align: center;
+            animation: fadeIn 4s ease-in-out;
         }
-        .ball-link:hover {
-            transform: scale(1.1);
-        }
-        .ball-img {
+
+        .ball-link img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
         }
-        .floating-ball {
+
+        .ball-link img:hover {
+            transform: scale(1.1);
+        }
+
+        .ball-area {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .falling-ball {
             position: absolute;
-            top: 100px;
-            left: -100px;
-            animation: slide 10s linear infinite;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: fall 5s linear infinite;
         }
-        @keyframes slide {
-            0% { left: -150px; top: 50px; }
-            50% { left: 50%; top: 90px; }
-            100% { left: 110%; top: 50px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100px) rotate(0deg);
+            }
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
-    <img class="floating-ball" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="Ball">
+    <h1>Sveiki atvykę į Sports Analyzer!</h1>
+    <p class="description">
+        Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių.
+    </p>
 
-    <div class="header">Sveiki atvykę į Sports Analyzer!</div>
-    <div class="description">
-        Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!
-    </div>
-
-    <div class="balls-container">
+    <div class="ball-area">
         <a href="/basketball" class="ball-link">
-            <img class="ball-img" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="Basketball">
+            <img src="/static/img/basketball.png" alt="Krepšinis">
         </a>
         <a href="/football" class="ball-link">
-            <img class="ball-img" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Soccer_ball.svg" alt="Football">
+            <img src="/static/img/football.png" alt="Futbolas">
         </a>
         <a href="/volleyball" class="ball-link">
-            <img class="ball-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Volleyball_icon.svg/120px-Volleyball_icon.svg.png" alt="Volleyball">
+            <img src="/static/img/volleyball.png" alt="Tinklinis">
         </a>
     </div>
+
+    <script>
+        const balls = [
+            '/static/img/basketball.png',
+            '/static/img/football.png',
+            '/static/img/volleyball.png'
+        ];
+
+        for (let i = 0; i < 300; i++) {
+            const ball = document.createElement('img');
+            ball.src = balls[Math.floor(Math.random() * balls.length)];
+            ball.classList.add('falling-ball');
+            ball.style.left = Math.random() * 100 + 'vw';
+            ball.style.animationDuration = (5 + Math.random() * 5) + 's';
+            ball.style.width = ball.style.height = (20 + Math.random() * 30) + 'px';
+            document.body.appendChild(ball);
+        }
+    </script>
 </body>
 </html>
