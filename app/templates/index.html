@@ -2,131 +2,78 @@
 <html lang="lt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Analyzer - Pradžia</title>
+    <title>Sports Analyzer</title>
     <style>
         body {
             margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to bottom right, #fceabb, #f8b500);
+            background: linear-gradient(to bottom, #fff3e0, #ffe082);
             overflow-x: hidden;
-            position: relative;
         }
-        h1 {
+        .header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-top: 60px;
-            animation: fadeInDown 2s ease forwards;
-            opacity: 0;
+            padding: 60px 20px 20px;
+            color: #333;
+            font-size: 36px;
+            font-weight: bold;
         }
         .description {
             text-align: center;
-            font-size: 1.2rem;
-            margin-top: 10px;
-            animation: fadeInUp 2s ease 1s forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        nav {
-            background-color: #111;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline-block;
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
             font-size: 18px;
-            transition: color 0.3s, transform 0.3s;
+            margin-bottom: 50px;
+            color: #444;
         }
-        nav ul li a:hover {
-            color: #ffb347;
-            transform: scale(1.1);
-        }
-        .balls {
+        .balls-container {
             display: flex;
             justify-content: center;
-            margin-top: 60px;
-            gap: 60px;
-            flex-wrap: wrap;
+            gap: 80px;
+            margin-bottom: 100px;
         }
-        .ball {
+        .ball-link {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .ball-link:hover {
+            transform: scale(1.1);
+        }
+        .ball-img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            cursor: pointer;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        .ball:hover {
-            transform: scale(1.1);
-        }
-        .basketball {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png');
-        }
-        .football {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/Soccer_ball.svg');
-        }
-        .volleyball {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/fd/Molten_V5M5000_Volleyball.jpg');
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .floating-ball {
             position: absolute;
-            top: 30%;
-            left: -150px;
-            width: 60px;
-            height: 60px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png');
-            background-size: cover;
-            border-radius: 50%;
-            animation: rollAcross 10s linear infinite;
+            top: 100px;
+            left: -100px;
+            animation: slide 10s linear infinite;
         }
-        @keyframes rollAcross {
-            0% { transform: translateX(0) rotate(0deg); }
-            100% { transform: translateX(110vw) rotate(360deg); }
+        @keyframes slide {
+            0% { left: -150px; top: 50px; }
+            50% { left: 50%; top: 90px; }
+            100% { left: 110%; top: 50px; }
         }
     </style>
 </head>
 <body>
+    <img class="floating-ball" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="Ball">
 
-    <div class="floating-ball"></div>
-
-    <nav>
-        <ul>
-            <li><a href="/">Pradžia</a></li>
-            <li><a href="/basketball">Krepšinis</a></li>
-            <li><a href="/football">Futbolas</a></li>
-            <li><a href="/volleyball">Tinklinis</a></li>
-        </ul>
-    </nav>
-
-    <h1>Sveiki atvykę į Sports Analyzer!</h1>
-    <p class="description">
+    <div class="header">Sveiki atvykę į Sports Analyzer!</div>
+    <div class="description">
         Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!
-    </p>
-
-    <div class="balls">
-        <div class="ball basketball" onclick="location.href='/basketball'"></div>
-        <div class="ball football" onclick="location.href='/football'"></div>
-        <div class="ball volleyball" onclick="location.href='/volleyball'"></div>
     </div>
 
+    <div class="balls-container">
+        <a href="/basketball" class="ball-link">
+            <img class="ball-img" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="Basketball">
+        </a>
+        <a href="/football" class="ball-link">
+            <img class="ball-img" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Soccer_ball.svg" alt="Football">
+        </a>
+        <a href="/volleyball" class="ball-link">
+            <img class="ball-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Volleyball_icon.svg/120px-Volleyball_icon.svg.png" alt="Volleyball">
+        </a>
+    </div>
 </body>
 </html>
