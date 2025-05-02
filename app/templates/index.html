@@ -6,110 +6,98 @@
     <style>
         body {
             margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: linear-gradient(to bottom right, #ffeb88, #f8b500);
-            font-family: 'Segoe UI', sans-serif;
-            height: 100vh;
-            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #ffe259, #ffa751);
+            overflow-x: hidden;
         }
 
-        h1 {
+        header {
             text-align: center;
-            padding-top: 50px;
-            font-size: 48px;
+            padding: 60px 20px 20px;
+            font-size: 2.5em;
+            font-weight: bold;
             color: #222;
-            animation: fadeIn 2s ease-in-out;
         }
 
         p.description {
             text-align: center;
-            font-size: 20px;
-            margin-top: 10px;
-            animation: fadeIn 3s ease-in-out;
+            font-size: 1.2em;
+            color: #444;
         }
 
-        .ball-link {
-            display: inline-block;
-            margin: 40px;
-            text-align: center;
-            animation: fadeIn 4s ease-in-out;
+        .ball-container {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
         }
 
-        .ball-link img {
-            width: 120px;
-            height: 120px;
+        .ball-button {
+            width: 140px;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
             border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
-        .ball-link img:hover {
+        .ball-button:hover {
             transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .ball-area {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .falling-ball {
+        .flying-ball {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
             border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.6;
-            animation: fall 5s linear infinite;
+            animation: fly 10s linear infinite;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fall {
-            from {
-                transform: translateY(-100px) rotate(0deg);
+        @keyframes fly {
+            0% {
+                top: -80px;
+                left: -100px;
+                transform: rotate(0deg);
             }
-            to {
-                transform: translateY(110vh) rotate(360deg);
+            100% {
+                top: 100vh;
+                left: 110vw;
+                transform: rotate(360deg);
             }
         }
     </style>
 </head>
 <body>
-    <h1>Sveiki atvykę į Sports Analyzer!</h1>
-    <p class="description">
-        Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių.
-    </p>
+    <header>Sveiki atvykę į Sports Analyzer!</header>
+    <p class="description">Čia galėsite analizuoti savo mėgstamas komandas ar žaidėjus iš krepšinio, futbolo ir tinklinio pasaulių!</p>
 
-    <div class="ball-area">
-        <a href="/basketball" class="ball-link">
-            <img src="/static/img/basketball.png" alt="Krepšinis">
-        </a>
-        <a href="/football" class="ball-link">
-            <img src="/static/img/football.png" alt="Futbolas">
-        </a>
-        <a href="/volleyball" class="ball-link">
-            <img src="/static/img/volleyball.png" alt="Tinklinis">
-        </a>
+    <div class="ball-container">
+        <a href="/basketball" class="ball-button" style="background-image: url('/static/img/basketball.png');"></a>
+        <a href="/football" class="ball-button" style="background-image: url('/static/img/football.png');"></a>
+        <a href="/volleyball" class="ball-button" style="background-image: url('/static/img/volleyball.png');"></a>
     </div>
 
+    <!-- 100 random flying balls (krepšinis, futbolas, tinklinis) -->
     <script>
-        const balls = [
+        const images = [
             '/static/img/basketball.png',
             '/static/img/football.png',
             '/static/img/volleyball.png'
         ];
 
-        for (let i = 0; i < 300; i++) {
-            const ball = document.createElement('img');
-            ball.src = balls[Math.floor(Math.random() * balls.length)];
-            ball.classList.add('falling-ball');
-            ball.style.left = Math.random() * 100 + 'vw';
-            ball.style.animationDuration = (5 + Math.random() * 5) + 's';
-            ball.style.width = ball.style.height = (20 + Math.random() * 30) + 'px';
+        for (let i = 0; i < 100; i++) {
+            const ball = document.createElement('div');
+            ball.className = 'flying-ball';
+            ball.style.top = Math.random() * window.innerHeight + 'px';
+            ball.style.left = Math.random() * window.innerWidth + 'px';
+            ball.style.animationDelay = Math.random() * 5 + 's';
+            ball.style.animationDuration = (8 + Math.random() * 4) + 's';
+            ball.style.backgroundImage = `url(${images[Math.floor(Math.random()*images.length)]})`;
             document.body.appendChild(ball);
         }
     </script>
