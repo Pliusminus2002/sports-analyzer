@@ -8,10 +8,34 @@
             background: radial-gradient(circle, #fceabb, #f8b500);
             font-family: sans-serif;
             padding: 30px;
+            color: #111;
+        }
+        nav {
+            background-color: #111;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffb347;
+            transform: scale(1.1);
         }
         h1 {
             text-align: center;
-            color: #333;
         }
         .team {
             background-color: white;
@@ -43,52 +67,63 @@
             font-size: 18px;
             font-weight: bold;
             margin-top: 15px;
-            color: #222;
+            color: green;
         }
     </style>
 </head>
 <body>
-    <h1>Lietuvos tinklinio komandos</h1>
 
-    {% for team in teams %}
-    <div class="team">
-        <h2>{{ team.name }}</h2>
-        <table>
-            <tr>
-                <th>Vardas</th>
-                <th>Smūgiai</th>
-                <th>Blokai</th>
-                <th>Padavimai</th>
-            </tr>
-            {% for player in team.players %}
-            <tr>
-                <td>{{ player.name }}</td>
-                <td>{{ player.spikes }}</td>
-                <td>{{ player.blocks }}</td>
-                <td>{{ player.aces }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    {% endfor %}
+<nav>
+    <ul>
+        <li><a href="/">Pradžia</a></li>
+        <li><a href="/basketball">Krepšinis</a></li>
+        <li><a href="/football">Futbolas</a></li>
+        <li><a href="/volleyball">Tinklinis</a></li>
+    </ul>
+</nav>
 
-    <form method="POST">
-        <h2>Palyginkite tinklinio komandas</h2>
-        <select name="team1">
-            {% for team in teams %}
-            <option value="{{ team.name }}">{{ team.name }}</option>
-            {% endfor %}
-        </select>
-        <select name="team2">
-            {% for team in teams %}
-            <option value="{{ team.name }}">{{ team.name }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Analizuoti</button>
+<h1>Lietuvos tinklinio komandos</h1>
 
-        {% if result %}
-        <p class="result">{{ result }}</p>
-        {% endif %}
-    </form>
+{% for team in teams %}
+<div class="team">
+    <h2>{{ team.name }}</h2>
+    <table>
+        <tr>
+            <th>Žaidėjas</th>
+            <th>Smūgiai</th>
+            <th>Blokai</th>
+            <th>Padavimai</th>
+        </tr>
+        {% for player in team.players %}
+        <tr>
+            <td>{{ player.name }}</td>
+            <td>{{ player.spikes }}</td>
+            <td>{{ player.blocks }}</td>
+            <td>{{ player.aces }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endfor %}
+
+<form method="POST">
+    <h2>Palyginkite tinklinio komandas</h2>
+    <select name="team1">
+        {% for team in teams %}
+        <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="team2">
+        {% for team in teams %}
+        <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Analizuoti</button>
+
+    {% if result %}
+    <p class="result">{{ result }}</p>
+    {% endif %}
+</form>
+
 </body>
 </html>
