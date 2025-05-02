@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Sports Analyzer</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script>
+    // Sukuriam globalų kintamąjį JS failui
+    window.ballImages = [
+      "{{ url_for('static', filename='img/basketball.png') }}",
+      "{{ url_for('static', filename='img/football.png') }}",
+      "{{ url_for('static', filename='img/volleyball.png') }}"
+    ];
+  </script>
 </head>
 <body>
   <div class="falling-balls-container"></div>
