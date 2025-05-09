@@ -1,4 +1,4 @@
-// Pasirenkame konteinerį, į kurį dėsim kamuolius
+
 const container = document.querySelector('.falling-balls-container');
 
 // Kelios kamuolių nuotraukos
