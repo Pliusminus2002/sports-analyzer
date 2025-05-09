@@ -3,7 +3,7 @@
 
 **Projekto pavadinimas:** Sports Analyzer  
 **Autorius:** Vaidilė Dubickaitė  
-**Studijos:** Vilniaus Tech  
+**Studijos:** Dirbtinio intelekto sistemos 
 **Dalykas:** Objektinio programavimo pagrindai  
 **Data:** 2025 m.
 
